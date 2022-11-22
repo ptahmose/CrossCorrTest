@@ -19,7 +19,7 @@ int main()
 
     TestOpenCV(3200, 400, 2000, 200);
     TestOpenCV(32000, 6000, 10000, 3000);
-    TestIppROIFull(32000, 2000, 10000, 1000);
+    TestIppROIFull(32000, 6000, 10000, 1000);
     return 0;
 }
 
@@ -113,8 +113,8 @@ void TestOpenCV(int sourceWidth, int sourceHeight, int templateWidth, int templa
     ippiImageJaehne_32f_C1R(upPtrTemplate.get(), templateStride, IppiSize{ templateWidth, templateHeight });
 
     int destinationStride;
-    int destinationWidth = sourceWidth + templateWidth - 1;
-    int destinationHeight = sourceHeight + templateHeight + 1;
+    int destinationWidth = sourceWidth - templateWidth - 1;
+    int destinationHeight = sourceHeight - templateHeight + 1;
     unique_ptr< Ipp32f, void(*)(void*) > upPtrDestination{ ippiMalloc_32f_C1(destinationWidth, destinationHeight, &destinationStride), ippFree };
     ippiSet_32f_C1R(0.f, upPtrDestination.get(), destinationStride, IppiSize{ destinationWidth, destinationHeight });
 
