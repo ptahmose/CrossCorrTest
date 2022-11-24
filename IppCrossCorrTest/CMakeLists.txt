@@ -4,8 +4,10 @@
 
 find_package(IPP REQUIRED)
 
-set(OpenCV_DIR "D:/dev/Github/vcpkg/installed/x64-windows/share/opencv4")
+#set(OpenCV_DIR "D:/dev/Github/vcpkg/installed/x64-windows/share/opencv4")
 find_package(OpenCV 4.2 REQUIRED)
+
+ find_package(ITK CONFIG REQUIRED)
 
 
 message("IPP -> ${IPP_INCLUDE_DIRS}")
@@ -25,7 +27,8 @@ target_link_libraries(IppCrossCorrTest PRIVATE
         "${IPP_LIB_SEARCHPATH}/${CMAKE_STATIC_LIBRARY_PREFIX}ippcore${IPP_LIBRARYNAME_SUFFIX}${CMAKE_STATIC_LIBRARY_SUFFIX}"
         "${IPP_LIB_SEARCHPATH}/${CMAKE_STATIC_LIBRARY_PREFIX}ippvm${IPP_LIBRARYNAME_SUFFIX}${CMAKE_STATIC_LIBRARY_SUFFIX}"
         "${IPP_LIB_SEARCHPATH}/${CMAKE_STATIC_LIBRARY_PREFIX}ipps${IPP_LIBRARYNAME_SUFFIX}${CMAKE_STATIC_LIBRARY_SUFFIX}"
-          ${OpenCV_LIBS}
+        "${OpenCV_LIBS}"
+        ITKFFT ITKVTK ITKznz itksys
         )
 
 
